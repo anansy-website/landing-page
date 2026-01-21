@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anansy | Untangle the Truth</title>
+    <meta name="description" content="AI-powered misinformation verification for WhatsApp. Verify suspicious messages instantly and protect your organisation with tamper-proof authentication.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Primary */
+            --anansy-gold: #D4A84B;
+            --wisdom-indigo: #1E3A5F;
+            --truth-teal: #0D9488;
+            
+            /* Secondary */
+            --story-black: #1A1A2E;
+            --web-white: #FAFAF9;
+            --kente-red: #C45C3E;
+            
+            /* Accent */
+            --sunlight: #F59E0B;
+            --silk-grey: #94A3B8;
+            
+            /* Gradients */
+            --gold-gradient: linear-gradient(135deg, #D4A84B 0%, #F59E0B 100%);
+            --teal-gradient: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--story-black);
+            color: var(--web-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(26,26,46,0.95) 0%, rgba(26,26,46,0) 100%);
+            transition: background 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(26,26,46,0.98);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            position: relative;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--anansy-gold);
+            letter-spacing: 0.15em;
+        }
+        
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--anansy-gold);
+            color: var(--story-black);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(212, 168, 75, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.08;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--anansy-gold) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, var(--truth-teal) 0%, transparent 40%);
+        }
+        
+        /* Animated web pattern */
+        .web-pattern {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.06;
+            pointer-events: none;
+        }
+        
+        .web-pattern svg {
+            width: 100%;
+            height: 100%;
+            animation: slowSpin 120s linear infinite;
+        }
+        
+        @keyframes slowSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 168, 75, 0.1);
+            border: 1px solid rgba(212, 168, 75, 0.3);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--anansy-gold);
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--truth-teal);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+        
+        .hero h1 span {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--truth-teal);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--silk-grey);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--anansy-gold);
+            color: var(--story-black);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 168, 75, 0.4);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--web-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 2px solid var(--wisdom-indigo);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--truth-teal);
+            color: var(--truth-teal);
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--story-black) 0%, var(--wisdom-indigo) 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--anansy-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--web-white);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--silk-grey);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(250, 250, 249, 0.05);
+            border: 1px solid rgba(250, 250, 249, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--anansy-gold);
+            background: rgba(212, 168, 75, 0.05);
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--anansy-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--web-white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-detail {
+            font-size: 0.85rem;
+            color: var(--silk-grey);
+        }
+        
+        /* Solution Section */
+        .solution {
+            padding: 6rem 2rem;
+            background: var(--wisdom-indigo);
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .solution-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        
+        .solution-card.b2c::before {
+            background: var(--truth-teal);
+        }
+        
+        .solution-card.b2b::before {
+            background: var(--anansy-gold);
+        }
+        
+        .solution-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solution-card.b2c .solution-icon {
+            background: rgba(13, 148, 136, 0.15);
+        }
+        
+        .solution-card.b2b .solution-icon {
+            background: rgba(212, 168, 75, 0.15);
+        }
+        
+        .solution-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--web-white);
+        }
+        
+        .solution-card .card-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solution-card.b2c .card-badge {
+            background: rgba(13, 148, 136, 0.2);
+            color: var(--truth-teal);
+        }
+        
+        .solution-card.b2b .card-badge {
+            background: rgba(212, 168, 75, 0.2);
+            color: var(--anansy-gold);
+        }
+        
+        .solution-card p {
+            color: var(--silk-grey);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .solution-features {
+            list-style: none;
+        }
+        
+        .solution-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--web-white);
+            font-size: 0.95rem;
+        }
+        
+        .solution-features li::before {
+            content: '✓';
+            font-weight: bold;
+            color: var(--truth-teal);
+            flex-shrink: 0;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: var(--story-black);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            color: var(--story-black);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step h3 {
+            font-size: 1.25rem;
+            color: var(--web-white);
+            margin-bottom: 0.75rem;
+        }
+        
+        .step p {
+            color: var(--silk-grey);
+            font-size: 0.95rem;
+        }
+        
+        /* Trust Section */
+        .trust {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--story-black) 0%, var(--wisdom-indigo) 50%, var(--story-black) 100%);
+        }
+        
+        .trust-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .trust-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .trust-text h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--web-white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .trust-text p {
+            color: var(--silk-grey);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .trust-list {
+            list-style: none;
+        }
+        
+        .trust-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            color: var(--web-white);
+        }
+        
+        .trust-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--anansy-gold);
+            border-radius: 50%;
+        }
+        
+        .trust-visual {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .trust-badge-demo {
+            background: var(--web-white);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .badge-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .badge-check {
+            width: 32px;
+            height: 32px;
+            background: var(--truth-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .badge-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--wisdom-indigo);
+            font-size: 1.1rem;
+        }
+        
+        .badge-org {
+            color: var(--story-black);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge-since {
+            color: var(--silk-grey);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .badge-link {
+            color: var(--truth-teal);
+            font-size: 0.8rem;
+            word-break: break-all;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--story-black);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--web-white);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-content p {
+            color: var(--silk-grey);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 450px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        @media (max-width: 500px) {
+            .cta-form {
+                flex-direction: column;
+            }
+        }
+        
+        .cta-form input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(250, 250, 249, 0.1);
+            border-radius: 4px;
+            background: rgba(250, 250, 249, 0.05);
+            color: var(--web-white);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .cta-form input::placeholder {
+            color: var(--silk-grey);
+        }
+        
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--anansy-gold);
+        }
+        
+        .cta-note {
+            font-size: 0.85rem;
+            color: var(--silk-grey);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: rgba(30, 58, 95, 0.3);
+            border-top: 1px solid rgba(250, 250, 249, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--anansy-gold);
+            letter-spacing: 0.1em;
+        }
+        
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: var(--silk-grey);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--silk-grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--anansy-gold);
+        }
+        
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--silk-grey);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-cta {
+                display: none;
+            }
+            
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .solution-card {
+                padding: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
+                <!-- Web spokes -->
+                <line x1="50" y1="50" x2="50" y2="10" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="85" y2="25" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="90" y2="50" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="85" y2="75" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="50" y2="90" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="15" y2="75" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="10" y2="50" stroke="#1E3A5F" stroke-width="2"/>
+                <line x1="50" y1="50" x2="15" y2="25" stroke="#1E3A5F" stroke-width="2"/>
+                <!-- Curved web rings -->
+                <path d="M50 25 Q60 27 67 33" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M67 33 Q73 42 75 50" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M75 50 Q73 58 67 67" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M67 67 Q58 73 50 75" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M50 75 Q42 73 33 67" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M33 67 Q27 58 25 50" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M25 50 Q27 42 33 33" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <path d="M33 33 Q42 27 50 25" stroke="#D4A84B" stroke-width="2" fill="none"/>
+                <!-- Spider body -->
+                <ellipse cx="50" cy="52" rx="6" ry="8" fill="#1E3A5F"/>
+                <ellipse cx="50" cy="44" rx="4" ry="4" fill="#1E3A5F"/>
+                <!-- Spider eyes -->
+                <circle cx="48" cy="43" r="1.5" fill="#D4A84B"/>
+                <circle cx="52" cy="43" r="1.5" fill="#D4A84B"/>
+                <!-- Checkmark -->
+                <path d="M35 52 L45 62 L68 38" stroke="#0D9488" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="logo-text">ANANSY</span>
+        </a>
+        <a href="#contact" class="nav-cta">Get Early Access</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="web-pattern">
+            <svg viewBox="0 0 400 400" fill="none">
+                <circle cx="200" cy="200" r="180" stroke="#D4A84B" stroke-width="0.5" fill="none"/>
+                <circle cx="200" cy="200" r="140" stroke="#D4A84B" stroke-width="0.5" fill="none"/>
+                <circle cx="200" cy="200" r="100" stroke="#D4A84B" stroke-width="0.5" fill="none"/>
+                <circle cx="200" cy="200" r="60" stroke="#D4A84B" stroke-width="0.5" fill="none"/>
+                <line x1="200" y1="20" x2="200" y2="380" stroke="#1E3A5F" stroke-width="0.5"/>
+                <line x1="20" y1="200" x2="380" y2="200" stroke="#1E3A5F" stroke-width="0.5"/>
+                <line x1="73" y1="73" x2="327" y2="327" stroke="#1E3A5F" stroke-width="0.5"/>
+                <line x1="327" y1="73" x2="73" y2="327" stroke="#1E3A5F" stroke-width="0.5"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Coming Soon — Join the Waitlist</span>
+            </div>
+            <h1>Fight Misinformation<br><span>Where It Spreads</span></h1>
+            <p class="tagline">Untangle the truth</p>
+            <p class="hero-description">
+                AI-powered fact-checking for WhatsApp. Verify suspicious messages in seconds and protect your organisation with tamper-proof authentication badges.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn-primary">
+                    Join Waitlist
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#solution" class="btn-secondary">
+                    See How It Works
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">The Challenge</p>
+                <h2 class="section-title">Lies Travel Fast. Truth Needs Help.</h2>
+                <p class="section-subtitle">Misinformation spreads through private messages faster than ever, causing real-world harm.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">35M</div>
+                    <div class="stat-label">UK WhatsApp Users</div>
+                    <div class="stat-detail">The primary vector for misinformation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">62%</div>
+                    <div class="stat-label">Can't Spot Fake News</div>
+                    <div class="stat-detail">People struggle to distinguish real from fake</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">Meta Exits Fact-Checking</div>
+                    <div class="stat-detail">Creating a critical gap in verification</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Our Solution</p>
+                <h2 class="section-title">Two Sides of the Same Truth</h2>
+                <p class="section-subtitle">Empowering individuals to verify and organisations to authenticate.</p>
+            </div>
+            <div class="solution-grid">
+                <div class="solution-card b2c">
+                    <div class="solution-icon">📱</div>
+                    <span class="card-badge">For Everyone</span>
+                    <h3>Forward-to-Verify</h3>
+                    <p>Suspicious message? Forward it to Anansy. Get instant AI-powered verification and share the truth back to your group.</p>
+                    <ul class="solution-features">
+                        <li>Verification in under 30 seconds</li>
+                        <li>Works inside WhatsApp — no app download</li>
+                        <li>Clear verdict: True, False, or Unverified</li>
+                        <li>Share truth the same way lies spread</li>
+                    </ul>
+                </div>
+                <div class="solution-card b2b">
+                    <div class="solution-icon">🏛️</div>
+                    <span class="card-badge">For Organisations</span>
+                    <h3>Trust Registry</h3>
+                    <p>Protect your reputation with tamper-proof authentication for all official communications.</p>
+                    <ul class="solution-features">
+                        <li>Embeddable verification badges</li>
+                        <li>Tamper-proof message records</li>
+                        <li>Real-time misinformation alerts</li>
+                        <li>Combat deepfakes and impersonation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">How It Works</p>
+                <h2 class="section-title">Truth in Three Steps</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Forward the Message</h3>
+                    <p>See something suspicious in your WhatsApp group? Simply forward it to the Anansy verification number.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Instant Analysis</h3>
+                    <p>Our AI analyses the content against trusted sources and returns a clear verification card within seconds.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Share the Truth</h3>
+                    <p>Forward the verification card back to your group. Truth travels the same path as the lie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badge Section -->
+    <section class="trust">
+        <div class="container">
+            <div class="trust-content">
+                <div class="trust-text">
+                    <h2>Build Trust with Every Message</h2>
+                    <p>The Trust Registry gives organisations an unforgeable stamp of authenticity for all their communications.</p>
+                    <ul class="trust-list">
+                        <li>Local councils protecting community updates</li>
+                        <li>NHS trusts authenticating health guidance</li>
+                        <li>Charities verifying donation appeals</li>
+                        <li>Media outlets proving editorial authenticity</li>
+                    </ul>
+                </div>
+                <div class="trust-visual">
+                    <div class="trust-badge-demo">
+                        <div class="badge-header">
+                            <div class="badge-check">✓</div>
+                            <span class="badge-title">VERIFIED BY ANANSY</span>
+                        </div>
+                        <p class="badge-org">[Your Organisation]</p>
+                        <p class="badge-since">Trusted member since 2025</p>
+                        <p class="badge-link">anansy.app/verify/abc123</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Be First to Untangle the Truth</h2>
+            <p>Join our early access list for updates on launch, pilot opportunities, and partnership enquiries.</p>
+            <form class="cta-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-primary">Join Waitlist</button>
+            </form>
+            <p class="cta-note">No spam. Unsubscribe anytime. We respect your inbox.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="footer-logo-text">ANANSY</span>
+                <span class="footer-tagline">· Untangle the truth</span>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:hello@anansy.app">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <p class="footer-copy">© 2025 Anansy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
