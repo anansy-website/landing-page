@@ -3,178 +3,213 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anansy | Untangle the Truth</title>
+    <title>Anansy | Stop Financial Fraud Before It Happens</title>
     <meta
       name="description"
-      content="AI-powered misinformation verification for WhatsApp. Verify suspicious messages instantly and protect your organisation with tamper-proof authentication."
+      content="Anansy is the UK's Trust Registry for digital communications. We help financial institutions prevent APP fraud — before your customer makes the payment."
     />
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
     <style>
+      /* ── BRAND TOKENS ── */
       :root {
-        /* Primary */
-        --anansy-gold: #d4a84b;
-        --wisdom-indigo: #1e3a5f;
-        --truth-teal: #0d9488;
-
-        /* Secondary */
-        --story-black: #1a1a2e;
-        --web-white: #fafaf9;
-        --kente-red: #c45c3e;
-
-        /* Accent */
-        --sunlight: #f59e0b;
-        --silk-grey: #94a3b8;
-
-        /* Gradients */
-        --gold-gradient: linear-gradient(135deg, #d4a84b 0%, #f59e0b 100%);
-        --teal-gradient: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        --gold: #d4a84b;
+        --gold-light: #e8c36b;
+        --gold-dark: #b8943f;
+        --indigo: #1e3a5f;
+        --indigo-deep: #0f1e35;
+        --teal: #0d9488;
+        --teal-light: #14b8a6;
+        --dark: #1a1a2e;
+        --white: #fafaf9;
+        --silk: #94a3b8;
+        --kente: #c45c3e;
       }
 
-      * {
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
-
+      html {
+        scroll-behavior: smooth;
+      }
       body {
-        font-family:
-          "Inter",
-          -apple-system,
-          sans-serif;
-        background: var(--story-black);
-        color: var(--web-white);
-        line-height: 1.6;
+        font-family: "Inter", sans-serif;
+        background: var(--dark);
+        color: var(--white);
         overflow-x: hidden;
       }
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Playfair Display", Georgia, serif;
-        font-weight: 700;
+      /* ── ANIMATED WEB BACKGROUND ── */
+      .web-bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .web-bg svg {
+        width: 100%;
+        height: 100%;
+        opacity: 0.04;
+      }
+      .web-thread {
+        stroke: var(--gold);
+        fill: none;
+        stroke-width: 1;
+        animation: web-breathe 8s ease-in-out infinite;
+      }
+      .web-thread:nth-child(2) {
+        animation-delay: 1s;
+      }
+      .web-thread:nth-child(3) {
+        animation-delay: 2s;
+      }
+      .web-thread:nth-child(4) {
+        animation-delay: 3s;
+      }
+      @keyframes web-breathe {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
       }
 
-      /* Navigation */
+      /* ── NAV ── */
       nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 100;
-        padding: 1.5rem 2rem;
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        align-items: center;
-        background: linear-gradient(
-          to bottom,
-          rgba(26, 26, 46, 0.95) 0%,
-          rgba(26, 26, 46, 0) 100%
-        );
-        transition: background 0.3s ease;
+        padding: 1.1rem 5%;
+        transition:
+          background 0.5s,
+          box-shadow 0.5s;
       }
-
       nav.scrolled {
-        background: rgba(26, 26, 46, 0.98);
-        backdrop-filter: blur(10px);
+        background: rgba(26, 26, 46, 0.96);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 1px 0 rgba(212, 168, 75, 0.15);
       }
-
-      .logo {
+      .nav-logo {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.85rem;
         text-decoration: none;
       }
-
-      .logo-mark {
-        width: 42px;
-        height: 42px;
-        position: relative;
+      .nav-logo-svg {
+        width: 40px;
+        height: 40px;
       }
-
-      .logo-text {
-        font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--anansy-gold);
-        letter-spacing: 0.15em;
+      .nav-wordmark {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
       }
-
+      .nav-wordmark-name {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .nav-wordmark-tag {
+        font-family: "Inter", sans-serif;
+        font-size: 0.65rem;
+        color: var(--teal);
+        letter-spacing: 0.08em;
+        font-style: italic;
+        margin-top: 1px;
+      }
       .nav-cta {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background: var(--anansy-gold);
-        color: var(--story-black);
-        text-decoration: none;
+        gap: 0.4rem;
+        padding: 0.6rem 1.5rem;
+        background: var(--gold);
+        color: var(--dark);
         font-weight: 600;
-        font-size: 0.9rem;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        border-radius: 2px;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 2px 12px rgba(212, 168, 75, 0.25);
       }
-
       .nav-cta:hover {
-        transform: translateY(-2px);
+        background: var(--gold-light);
+        transform: translateY(-1px);
         box-shadow: 0 4px 20px rgba(212, 168, 75, 0.4);
       }
 
-      /* Hero Section */
+      /* ── HERO ── */
       .hero {
+        position: relative;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         text-align: center;
-        padding: 8rem 2rem 4rem;
-        position: relative;
+        padding: 9rem 5% 6rem;
         overflow: hidden;
       }
-
-      .hero-bg {
+      .hero-gradient {
         position: absolute;
         inset: 0;
-        opacity: 0.08;
-        background-image:
+        background:
           radial-gradient(
-            circle at 20% 30%,
-            var(--anansy-gold) 0%,
-            transparent 50%
+            ellipse 90% 70% at 50% 35%,
+            rgba(30, 58, 95, 0.8) 0%,
+            transparent 65%
           ),
           radial-gradient(
-            circle at 80% 70%,
-            var(--truth-teal) 0%,
-            transparent 40%
-          );
+            ellipse 50% 40% at 15% 90%,
+            rgba(13, 148, 136, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 40% 40% at 85% 10%,
+            rgba(212, 168, 75, 0.07) 0%,
+            transparent 60%
+          ),
+          var(--dark);
       }
 
-      /* Animated web pattern */
-      .web-pattern {
+      /* Animated spider web hero background */
+      .hero-web {
         position: absolute;
-        width: 600px;
-        height: 600px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.06;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         pointer-events: none;
       }
-
-      .web-pattern svg {
-        width: 100%;
-        height: 100%;
-        animation: slowSpin 120s linear infinite;
+      .hero-web svg {
+        width: min(900px, 130vw);
+        height: min(900px, 130vw);
+        opacity: 0.07;
+        animation: web-rotate 120s linear infinite;
       }
-
-      @keyframes slowSpin {
+      @keyframes web-rotate {
         from {
           transform: rotate(0deg);
         }
@@ -183,36 +218,35 @@
         }
       }
 
+      /* Hero content */
       .hero-content {
         position: relative;
         z-index: 1;
-        max-width: 900px;
       }
-
       .hero-badge {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(212, 168, 75, 0.1);
+        gap: 0.6rem;
+        padding: 0.45rem 1.1rem;
         border: 1px solid rgba(212, 168, 75, 0.3);
         border-radius: 100px;
-        font-size: 0.85rem;
-        color: var(--anansy-gold);
+        background: rgba(212, 168, 75, 0.06);
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        color: var(--gold-light);
+        text-transform: uppercase;
         margin-bottom: 2rem;
-        animation: fadeUp 0.8s ease;
+        animation: fade-up 0.9s ease both 0.1s;
       }
-
-      .hero-badge::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        background: var(--truth-teal);
+      .hero-badge-dot {
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
-        animation: pulse 2s infinite;
+        background: var(--teal);
+        animation: pulse-dot 2s ease-in-out infinite;
       }
-
-      @keyframes pulse {
+      @keyframes pulse-dot {
         0%,
         100% {
           opacity: 1;
@@ -220,96 +254,159 @@
         }
         50% {
           opacity: 0.5;
-          transform: scale(1.2);
+          transform: scale(0.7);
+        }
+      }
+
+      /* Big logo in hero */
+      .hero-logo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        animation: fade-up 0.9s ease both 0.3s;
+      }
+      .hero-logo-wrap svg {
+        width: clamp(80px, 14vw, 130px);
+        height: clamp(80px, 14vw, 130px);
+        filter: drop-shadow(0 0 30px rgba(212, 168, 75, 0.2));
+        animation: logo-float 6s ease-in-out infinite;
+      }
+      @keyframes logo-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
         }
       }
 
       .hero h1 {
-        font-size: clamp(2.5rem, 8vw, 5rem);
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
-        animation: fadeUp 0.8s ease 0.1s both;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+        font-weight: 800;
+        line-height: 1.06;
+        letter-spacing: -0.01em;
+        max-width: 860px;
+        margin: 0 auto 1.5rem;
+        animation: fade-up 0.9s ease both 0.5s;
       }
-
-      .hero h1 span {
-        background: var(--gold-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      .hero h1 em {
+        font-style: italic;
+        color: var(--gold);
       }
-
-      .tagline {
-        font-size: 1.25rem;
-        color: var(--truth-teal);
-        font-weight: 500;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 1.5rem;
-        animation: fadeUp 0.8s ease 0.2s both;
-      }
-
-      .hero-description {
-        font-size: 1.25rem;
-        color: var(--silk-grey);
-        max-width: 600px;
+      .hero-sub {
+        font-size: clamp(1rem, 1.8vw, 1.15rem);
+        font-weight: 300;
+        line-height: 1.75;
+        color: rgba(250, 250, 249, 0.65);
+        max-width: 560px;
         margin: 0 auto 2.5rem;
-        animation: fadeUp 0.8s ease 0.3s both;
+        animation: fade-up 0.9s ease both 0.7s;
       }
-
-      .hero-ctas {
+      .hero-actions {
         display: flex;
-        flex-wrap: wrap;
         gap: 1rem;
+        flex-wrap: wrap;
         justify-content: center;
-        animation: fadeUp 0.8s ease 0.4s both;
+        margin-bottom: 4rem;
+        animation: fade-up 0.9s ease both 0.9s;
       }
-
       .btn-primary {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 1rem 2rem;
-        background: var(--anansy-gold);
-        color: var(--story-black);
-        text-decoration: none;
+        padding: 0.9rem 2.1rem;
+        background: var(--gold);
+        color: var(--dark);
         font-weight: 600;
-        font-size: 1rem;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-        border: none;
-        cursor: pointer;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        border-radius: 2px;
+        box-shadow: 0 4px 24px rgba(212, 168, 75, 0.35);
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
       }
-
       .btn-primary:hover {
+        background: var(--gold-light);
         transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(212, 168, 75, 0.4);
+        box-shadow: 0 8px 32px rgba(212, 168, 75, 0.45);
       }
-
       .btn-secondary {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 1rem 2rem;
+        padding: 0.9rem 2.1rem;
         background: transparent;
-        color: var(--web-white);
+        color: var(--white);
+        font-weight: 400;
+        font-size: 0.9rem;
         text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        border-radius: 4px;
-        border: 2px solid var(--wisdom-indigo);
-        transition: all 0.2s ease;
-        cursor: pointer;
+        border: 1px solid rgba(250, 250, 249, 0.22);
+        border-radius: 2px;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
       }
-
       .btn-secondary:hover {
-        border-color: var(--truth-teal);
-        color: var(--truth-teal);
+        border-color: rgba(250, 250, 249, 0.55);
+        background: rgba(250, 250, 249, 0.05);
       }
 
-      @keyframes fadeUp {
+      /* Stats strip */
+      .hero-stats {
+        display: flex;
+        gap: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        border: 1px solid rgba(212, 168, 75, 0.15);
+        border-radius: 4px;
+        overflow: hidden;
+        animation: fade-up 0.9s ease both 1.1s;
+        background: rgba(30, 58, 95, 0.2);
+        backdrop-filter: blur(10px);
+        max-width: 860px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .hero-stat {
+        flex: 1;
+        min-width: 150px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        border-right: 1px solid rgba(212, 168, 75, 0.1);
+        position: relative;
+        transition: background 0.3s;
+      }
+      .hero-stat:last-child {
+        border-right: none;
+      }
+      .hero-stat:hover {
+        background: rgba(212, 168, 75, 0.06);
+      }
+      .hero-stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+        display: block;
+      }
+      .hero-stat-label {
+        font-size: 0.72rem;
+        color: rgba(250, 250, 249, 0.45);
+        letter-spacing: 0.04em;
+        margin-top: 0.35rem;
+        line-height: 1.35;
+      }
+
+      @keyframes fade-up {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(28px);
         }
         to {
           opacity: 1;
@@ -317,914 +414,1819 @@
         }
       }
 
-      /* Problem Section */
+      /* ── SECTION SYSTEM ── */
+      section {
+        position: relative;
+        z-index: 1;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 6rem 5%;
+      }
+
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        color: var(--teal-light);
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      .section-eyebrow::before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: var(--teal-light);
+        opacity: 0.7;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4.2vw, 3.4rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.25rem;
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .section-body {
+        font-size: 1.05rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: rgba(250, 250, 249, 0.6);
+        max-width: 580px;
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .sr {
+        opacity: 0;
+        transform: translateY(36px);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .sr.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .sr-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .sr-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .sr-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .sr-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .sr-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ── APP EXPLAINER ── */
+      .explainer {
+        background: linear-gradient(180deg, var(--dark) 0%, #0d1124 100%);
+      }
+      .explainer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 5rem;
+        align-items: start;
+        margin-top: 3.5rem;
+      }
+      .explainer-lede {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 2.6vw, 2rem);
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+      }
+      .explainer-lede em {
+        color: var(--gold);
+        font-style: italic;
+      }
+      .explainer-lede strong {
+        color: var(--teal-light);
+        font-style: normal;
+      }
+      .explainer-p {
+        font-size: 1rem;
+        line-height: 1.82;
+        color: rgba(250, 250, 249, 0.62);
+        margin-bottom: 1.2rem;
+        font-weight: 300;
+      }
+      .explainer-p b {
+        color: rgba(250, 250, 249, 0.92);
+        font-weight: 500;
+      }
+      .explainer-quote {
+        margin: 1.5rem 0;
+        padding: 1.2rem 1.5rem;
+        border-left: 3px solid var(--gold);
+        background: rgba(212, 168, 75, 0.05);
+        font-style: italic;
+        color: rgba(250, 250, 249, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        border-radius: 0 4px 4px 0;
+      }
+      .scale-box {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(212, 168, 75, 0.12);
+        border: 1px solid rgba(212, 168, 75, 0.15);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .scale-item {
+        padding: 1.5rem 1rem;
+        background: var(--dark);
+        text-align: center;
+        transition: background 0.3s;
+      }
+      .scale-item:hover {
+        background: rgba(212, 168, 75, 0.06);
+      }
+      .scale-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .scale-label {
+        font-size: 0.72rem;
+        color: rgba(250, 250, 249, 0.4);
+        margin-top: 0.35rem;
+        line-height: 1.4;
+      }
+
+      /* Story steps */
+      .story {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .story-step {
+        display: flex;
+        gap: 1.25rem;
+        padding: 1.4rem 0;
+        border-bottom: 1px solid rgba(250, 250, 249, 0.06);
+        transition: background 0.2s;
+      }
+      .story-step:last-child {
+        border-bottom: none;
+      }
+      .story-step:hover {
+        padding-left: 0.5rem;
+      }
+      .story-icon {
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        border: 1px solid rgba(250, 250, 249, 0.08);
+        transition: transform 0.3s;
+      }
+      .story-step:hover .story-icon {
+        transform: scale(1.1);
+      }
+      .story-icon.danger {
+        background: rgba(196, 92, 62, 0.12);
+        border-color: rgba(196, 92, 62, 0.25);
+      }
+      .story-icon.warning {
+        background: rgba(212, 168, 75, 0.1);
+        border-color: rgba(212, 168, 75, 0.22);
+      }
+      .story-icon.safe {
+        background: rgba(13, 148, 136, 0.12);
+        border-color: rgba(13, 148, 136, 0.25);
+      }
+      .story-title {
+        font-weight: 600;
+        font-size: 0.92rem;
+        margin-bottom: 0.3rem;
+      }
+      .story-body {
+        font-size: 0.85rem;
+        color: rgba(250, 250, 249, 0.5);
+        line-height: 1.65;
+      }
+      .story-body b {
+        color: rgba(250, 250, 249, 0.82);
+        font-weight: 500;
+      }
+
+      /* ── PROBLEM ── */
       .problem {
-        padding: 6rem 2rem;
         background: linear-gradient(
           180deg,
-          var(--story-black) 0%,
-          var(--wisdom-indigo) 100%
+          #0d1124 0%,
+          var(--indigo-deep) 100%
         );
       }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-      }
-
-      .section-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--anansy-gold);
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        font-size: clamp(2rem, 4vw, 3rem);
-        color: var(--web-white);
-        margin-bottom: 1rem;
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--silk-grey);
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .stats-grid {
+      .problem-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-      }
-
-      .stat-card {
-        background: rgba(250, 250, 249, 0.05);
-        border: 1px solid rgba(250, 250, 249, 0.1);
-        border-radius: 12px;
-        padding: 2rem;
-        text-align: center;
-        transition: all 0.3s ease;
-      }
-
-      .stat-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--anansy-gold);
-        background: rgba(212, 168, 75, 0.05);
-      }
-
-      .stat-number {
-        font-family: "Playfair Display", serif;
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--anansy-gold);
-        margin-bottom: 0.5rem;
-      }
-
-      .stat-label {
-        font-size: 1rem;
-        color: var(--web-white);
-        margin-bottom: 0.5rem;
-      }
-
-      .stat-detail {
-        font-size: 0.85rem;
-        color: var(--silk-grey);
-      }
-
-      /* Solution Section */
-      .solution {
-        padding: 6rem 2rem;
-        background: var(--wisdom-indigo);
-      }
-
-      .solution-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: 1fr 1fr;
         gap: 3rem;
-        margin-top: 3rem;
+        align-items: center;
+        margin-top: 3.5rem;
+      }
+      .p-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .p-card {
+        padding: 1.4rem 1.6rem;
+        border: 1px solid rgba(250, 250, 249, 0.07);
+        border-left: 3px solid var(--teal);
+        background: rgba(250, 250, 249, 0.025);
+        border-radius: 0 4px 4px 0;
+        transition:
+          background 0.25s,
+          border-left-color 0.25s,
+          transform 0.25s;
+        cursor: default;
+      }
+      .p-card:hover {
+        background: rgba(250, 250, 249, 0.055);
+        transform: translateX(4px);
+      }
+      .p-card.gold {
+        border-left-color: var(--gold);
+      }
+      .p-card-title {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.35rem;
+      }
+      .p-card-body {
+        font-size: 0.85rem;
+        color: rgba(250, 250, 249, 0.52);
+        line-height: 1.6;
       }
 
-      .solution-card {
-        background: rgba(26, 26, 46, 0.6);
-        border-radius: 16px;
-        padding: 3rem;
+      .p-highlight {
+        padding: 2.5rem;
+        background: linear-gradient(
+          135deg,
+          rgba(212, 168, 75, 0.1),
+          rgba(212, 168, 75, 0.03)
+        );
+        border: 1px solid rgba(212, 168, 75, 0.2);
+        border-radius: 6px;
         position: relative;
         overflow: hidden;
       }
-
-      .solution-card::before {
+      .p-highlight::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-      }
-
-      .solution-card.b2c::before {
-        background: var(--truth-teal);
-      }
-
-      .solution-card.b2b::before {
-        background: var(--anansy-gold);
-      }
-
-      .solution-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.75rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .solution-card.b2c .solution-icon {
-        background: rgba(13, 148, 136, 0.15);
-      }
-
-      .solution-card.b2b .solution-icon {
-        background: rgba(212, 168, 75, 0.15);
-      }
-
-      .solution-card h3 {
-        font-size: 1.75rem;
-        margin-bottom: 0.5rem;
-        color: var(--web-white);
-      }
-
-      .solution-card .card-badge {
-        display: inline-block;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 0.25rem 0.75rem;
-        border-radius: 100px;
-        margin-bottom: 1.5rem;
-      }
-
-      .solution-card.b2c .card-badge {
-        background: rgba(13, 148, 136, 0.2);
-        color: var(--truth-teal);
-      }
-
-      .solution-card.b2b .card-badge {
-        background: rgba(212, 168, 75, 0.2);
-        color: var(--anansy-gold);
-      }
-
-      .solution-card p {
-        color: var(--silk-grey);
-        margin-bottom: 1.5rem;
-        font-size: 1.05rem;
-      }
-
-      .solution-features {
-        list-style: none;
-      }
-
-      .solution-features li {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        color: var(--web-white);
-        font-size: 0.95rem;
-      }
-
-      .solution-features li::before {
-        content: "✓";
-        font-weight: bold;
-        color: var(--truth-teal);
-        flex-shrink: 0;
-      }
-
-      /* How It Works */
-      .how-it-works {
-        padding: 6rem 2rem;
-        background: var(--story-black);
-      }
-
-      .steps {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-      }
-
-      .step {
-        text-align: center;
-        padding: 2rem;
-      }
-
-      .step-number {
-        width: 50px;
-        height: 50px;
+        top: -40px;
+        right: -40px;
+        width: 140px;
+        height: 140px;
         border-radius: 50%;
-        background: var(--gold-gradient);
-        color: var(--story-black);
-        font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1.5rem;
-      }
-
-      .step h3 {
-        font-size: 1.25rem;
-        color: var(--web-white);
-        margin-bottom: 0.75rem;
-      }
-
-      .step p {
-        color: var(--silk-grey);
-        font-size: 0.95rem;
-      }
-
-      /* Trust Section */
-      .trust {
-        padding: 6rem 2rem;
-        background: linear-gradient(
-          180deg,
-          var(--story-black) 0%,
-          var(--wisdom-indigo) 50%,
-          var(--story-black) 100%
+        background: radial-gradient(
+          circle,
+          rgba(212, 168, 75, 0.1),
+          transparent 70%
         );
       }
-
-      .trust-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      @media (max-width: 768px) {
-        .trust-content {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .trust-text h2 {
-        font-size: clamp(2rem, 4vw, 2.5rem);
-        color: var(--web-white);
-        margin-bottom: 1.5rem;
-      }
-
-      .trust-text p {
-        color: var(--silk-grey);
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .trust-list {
-        list-style: none;
-      }
-
-      .trust-list li {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.75rem 0;
-        color: var(--web-white);
-      }
-
-      .trust-list li::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        background: var(--anansy-gold);
-        border-radius: 50%;
-      }
-
-      .trust-visual {
-        display: flex;
-        justify-content: center;
-      }
-
-      .trust-badge-demo {
-        background: var(--web-white);
-        border-radius: 12px;
-        padding: 2rem;
-        max-width: 320px;
-        text-align: center;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      }
-
-      .badge-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .badge-check {
-        width: 32px;
-        height: 32px;
-        background: var(--truth-teal);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-      }
-
-      .badge-title {
+      .p-highlight-num {
         font-family: "Playfair Display", serif;
+        font-size: 4rem;
         font-weight: 700;
-        color: var(--wisdom-indigo);
-        font-size: 1.1rem;
-      }
-
-      .badge-org {
-        color: var(--story-black);
-        font-weight: 600;
-        font-size: 1rem;
+        color: var(--gold);
+        line-height: 1;
         margin-bottom: 0.5rem;
       }
-
-      .badge-since {
-        color: var(--silk-grey);
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
+      .p-highlight-text {
+        font-size: 0.92rem;
+        color: rgba(250, 250, 249, 0.72);
+        line-height: 1.65;
+      }
+      .p-highlight-accent {
+        font-size: 1.05rem;
+        color: var(--gold-light);
+        font-weight: 600;
+        margin-top: 1.25rem;
+        line-height: 1.55;
+      }
+      .p-highlight-source {
+        font-size: 0.7rem;
+        color: rgba(250, 250, 249, 0.3);
+        margin-top: 1rem;
+        font-family: "DM Mono", monospace;
+      }
+      .gold-rule {
+        width: 36px;
+        height: 2px;
+        background: var(--gold);
+        margin: 1.25rem 0;
+        opacity: 0.4;
       }
 
-      .badge-link {
-        color: var(--truth-teal);
-        font-size: 0.8rem;
-        word-break: break-all;
+      /* ── HOW IT WORKS ── */
+      .how {
+        background: #0d1124;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 3.5rem;
+        border: 1px solid rgba(250, 250, 249, 0.07);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .step {
+        padding: 2.5rem 2rem;
+        background: rgba(250, 250, 249, 0.015);
+        border-right: 1px solid rgba(250, 250, 249, 0.06);
+        transition: background 0.3s;
+        position: relative;
+      }
+      .step:last-child {
+        border-right: none;
+      }
+      .step::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--teal);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+      }
+      .step:hover {
+        background: rgba(13, 148, 136, 0.06);
+      }
+      .step:hover::after {
+        transform: scaleX(1);
+      }
+      .step-num {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: rgba(212, 168, 75, 0.18);
+        line-height: 1;
+        margin-bottom: 1.25rem;
+      }
+      .step-icon {
+        width: 42px;
+        height: 42px;
+        background: rgba(13, 148, 136, 0.12);
+        border: 1px solid rgba(13, 148, 136, 0.3);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+        font-size: 1.2rem;
+        transition:
+          transform 0.3s,
+          background 0.3s;
+      }
+      .step:hover .step-icon {
+        transform: scale(1.1);
+        background: rgba(13, 148, 136, 0.2);
+      }
+      .step-title {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.65rem;
+      }
+      .step-body {
+        font-size: 0.86rem;
+        line-height: 1.68;
+        color: rgba(250, 250, 249, 0.52);
       }
 
-      /* CTA Section */
-      .cta-section {
-        padding: 6rem 2rem;
-        background: var(--story-black);
+      /* ── ROI ── */
+      .roi {
+        background: linear-gradient(135deg, var(--indigo-deep), #0e1a35);
+      }
+      .roi-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .roi-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        margin-top: 2rem;
+      }
+      .roi-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        font-size: 0.92rem;
+        color: rgba(250, 250, 249, 0.68);
+        line-height: 1.55;
+        transition: color 0.2s;
+      }
+      .roi-list li:hover {
+        color: rgba(250, 250, 249, 0.9);
+      }
+      .roi-list li::before {
+        content: "";
+        flex-shrink: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        margin-top: 0.5rem;
+      }
+      .roi-card {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 168, 75, 0.09),
+          rgba(212, 168, 75, 0.02)
+        );
+        border: 1px solid rgba(212, 168, 75, 0.22);
+        border-radius: 8px;
+        padding: 2.75rem 2rem;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
       }
-
-      .cta-content {
-        max-width: 600px;
-        margin: 0 auto;
+      .roi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(212, 168, 75, 0.12);
       }
-
-      .cta-content h2 {
-        font-size: clamp(2rem, 4vw, 2.75rem);
-        color: var(--web-white);
-        margin-bottom: 1rem;
+      .roi-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          rgba(212, 168, 75, 0.08),
+          transparent
+        );
+        pointer-events: none;
       }
-
-      .cta-content p {
-        color: var(--silk-grey);
+      .roi-headline {
+        font-family: "Playfair Display", serif;
         font-size: 1.1rem;
+        color: rgba(250, 250, 249, 0.55);
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+      .roi-big {
+        font-family: "Playfair Display", serif;
+        font-size: 5rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .roi-big sup {
+        font-size: 2.2rem;
+        vertical-align: super;
+      }
+      .roi-rule {
+        width: 40px;
+        height: 2px;
+        background: var(--gold);
+        margin: 1.25rem auto;
+        opacity: 0.35;
+      }
+      .roi-sub {
+        font-size: 0.88rem;
+        color: rgba(250, 250, 249, 0.48);
+        line-height: 1.65;
+      }
+      .roi-price-label {
+        font-size: 0.72rem;
+        color: rgba(250, 250, 249, 0.3);
+        font-family: "DM Mono", monospace;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.5rem;
+        margin-top: 1.75rem;
+      }
+      .roi-price {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .roi-price span {
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        color: rgba(250, 250, 249, 0.38);
+        font-weight: 300;
+      }
+
+      /* ── WHY DIFFERENT ── */
+      .why {
+        background: #0d1124;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin-top: 3.5rem;
+      }
+      .why-card {
+        padding: 2rem;
+        border: 1px solid rgba(250, 250, 249, 0.07);
+        border-radius: 6px;
+        background: rgba(250, 250, 249, 0.02);
+        transition:
+          border-color 0.3s,
+          background 0.3s,
+          transform 0.3s;
+        cursor: default;
+      }
+      .why-card:hover {
+        border-color: rgba(13, 148, 136, 0.35);
+        background: rgba(13, 148, 136, 0.05);
+        transform: translateY(-3px);
+      }
+      .why-icon {
+        width: 46px;
+        height: 46px;
+        background: rgba(13, 148, 136, 0.1);
+        border: 1px solid rgba(13, 148, 136, 0.2);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        transition:
+          transform 0.3s,
+          background 0.3s;
+      }
+      .why-card:hover .why-icon {
+        transform: scale(1.1) rotate(-5deg);
+        background: rgba(13, 148, 136, 0.18);
+      }
+      .why-card-title {
+        font-weight: 600;
+        font-size: 0.97rem;
+        margin-bottom: 0.5rem;
+      }
+      .why-card-body {
+        font-size: 0.85rem;
+        color: rgba(250, 250, 249, 0.48);
+        line-height: 1.68;
+      }
+
+      .comparison-wrap {
+        margin-top: 3.5rem;
+        overflow-x: auto;
+      }
+      .comparison {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.855rem;
+      }
+      .comparison th {
+        padding: 0.9rem 1.25rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.76rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(250, 250, 249, 0.35);
+        border-bottom: 1px solid rgba(250, 250, 249, 0.08);
+      }
+      .comparison th:last-child {
+        color: var(--teal-light);
+      }
+      .comparison td {
+        padding: 0.95rem 1.25rem;
+        border-bottom: 1px solid rgba(250, 250, 249, 0.05);
+        color: rgba(250, 250, 249, 0.62);
+        vertical-align: top;
+      }
+      .comparison td:first-child {
+        font-weight: 500;
+        color: var(--white);
+      }
+      .comparison td:last-child {
+        color: var(--teal-light);
+        font-weight: 500;
+      }
+      .comparison tbody tr {
+        transition: background 0.2s;
+      }
+      .comparison tbody tr:hover td {
+        background: rgba(250, 250, 249, 0.025);
+      }
+      .check {
+        color: var(--teal);
+        font-size: 1rem;
+      }
+
+      /* ── REGULATORY ── */
+      .regulatory {
+        background: linear-gradient(
+          180deg,
+          var(--indigo-deep) 0%,
+          var(--dark) 100%
+        );
+      }
+      .reg-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 3rem;
+      }
+      .reg-card {
+        padding: 1.75rem;
+        border: 1px solid rgba(250, 250, 249, 0.07);
+        border-radius: 6px;
+        background: rgba(250, 250, 249, 0.025);
+        transition:
+          border-color 0.25s,
+          background 0.25s,
+          transform 0.25s;
+        cursor: default;
+      }
+      .reg-card:hover {
+        border-color: rgba(212, 168, 75, 0.25);
+        background: rgba(212, 168, 75, 0.04);
+        transform: translateY(-3px);
+      }
+      .reg-date {
+        font-family: "DM Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--gold);
+        letter-spacing: 0.1em;
+        margin-bottom: 0.75rem;
+      }
+      .reg-title {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      .reg-body {
+        font-size: 0.83rem;
+        color: rgba(250, 250, 249, 0.48);
+        line-height: 1.62;
+      }
+
+      /* ── PILOT CTA ── */
+      .pilot {
+        background: var(--dark);
+        position: relative;
+        overflow: hidden;
+      }
+      .pilot::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(30, 58, 95, 0.5),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .pilot-inner {
+        position: relative;
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 6rem 5%;
+      }
+      /* Animated web logo in CTA */
+      .pilot-logo {
+        display: flex;
+        justify-content: center;
         margin-bottom: 2rem;
       }
-
-      .cta-form {
-        display: flex;
-        gap: 0.75rem;
-        max-width: 450px;
-        margin: 0 auto 1.5rem;
+      .pilot-logo svg {
+        width: 80px;
+        height: 80px;
+        opacity: 0.7;
+        animation: logo-float 6s ease-in-out infinite 1s;
       }
-
-      @media (max-width: 500px) {
-        .cta-form {
-          flex-direction: column;
-        }
+      .pilot-eyebrow {
+        justify-content: center;
+        margin-bottom: 1.5rem;
       }
-
-      .cta-form input {
-        flex: 1;
-        padding: 1rem 1.25rem;
-        border: 2px solid rgba(250, 250, 249, 0.1);
-        border-radius: 4px;
-        background: rgba(250, 250, 249, 0.05);
-        color: var(--web-white);
-        font-size: 1rem;
-        font-family: inherit;
-      }
-
-      .cta-form input::placeholder {
-        color: var(--silk-grey);
-      }
-
-      .cta-form input:focus {
-        outline: none;
-        border-color: var(--anansy-gold);
-      }
-
-      .cta-note {
-        font-size: 0.85rem;
-        color: var(--silk-grey);
-      }
-
-      /* Footer */
-      footer {
-        padding: 3rem 2rem;
-        background: rgba(30, 58, 95, 0.3);
-        border-top: 1px solid rgba(250, 250, 249, 0.1);
-      }
-
-      .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1.5rem;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .footer-logo-text {
+      .pilot-title {
         font-family: "Playfair Display", serif;
-        font-size: 1.25rem;
+        font-size: clamp(2rem, 4vw, 3.2rem);
         font-weight: 700;
-        color: var(--anansy-gold);
-        letter-spacing: 0.1em;
+        line-height: 1.1;
+        margin-bottom: 1.25rem;
+      }
+      .pilot-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .pilot-body {
+        font-size: 1.05rem;
+        color: rgba(250, 250, 249, 0.58);
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+      }
+      .pilot-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .pilot-note {
+        margin-top: 1.75rem;
+        font-size: 0.76rem;
+        color: rgba(250, 250, 249, 0.28);
+        font-family: "DM Mono", monospace;
+        letter-spacing: 0.06em;
       }
 
-      .footer-tagline {
-        font-size: 0.9rem;
-        color: var(--silk-grey);
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid rgba(212, 168, 75, 0.12);
+        padding: 2rem 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        background: rgba(0, 0, 0, 0.2);
       }
-
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .footer-brand svg {
+        width: 28px;
+        height: 28px;
+        opacity: 0.8;
+      }
+      .footer-brand-text {
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(250, 250, 249, 0.5);
+      }
+      .footer-brand-tag {
+        font-size: 0.65rem;
+        color: var(--teal);
+        font-style: italic;
+        letter-spacing: 0.06em;
+        margin-top: 1px;
+      }
       .footer-links {
         display: flex;
         gap: 2rem;
       }
-
       .footer-links a {
-        color: var(--silk-grey);
+        font-size: 0.8rem;
+        color: rgba(250, 250, 249, 0.32);
         text-decoration: none;
-        font-size: 0.9rem;
         transition: color 0.2s;
       }
-
       .footer-links a:hover {
-        color: var(--anansy-gold);
+        color: var(--gold-light);
       }
-
       .footer-copy {
-        font-size: 0.85rem;
-        color: var(--silk-grey);
+        font-size: 0.75rem;
+        color: rgba(250, 250, 249, 0.2);
+        font-family: "DM Mono", monospace;
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        nav {
-          padding: 1rem;
+      /* ── RESPONSIVE ── */
+      @media (max-width: 820px) {
+        .problem-grid,
+        .roi-inner,
+        .why-grid,
+        .explainer-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
         }
-
-        .nav-cta {
-          display: none;
-        }
-
-        .hero {
-          padding: 6rem 1.5rem 3rem;
-        }
-
-        .solution-grid {
+        .steps,
+        .reg-grid {
           grid-template-columns: 1fr;
         }
-
-        .solution-card {
-          padding: 2rem;
+        .scale-box {
+          grid-template-columns: 1fr;
         }
-
-        .footer-content {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .footer-links {
+        .hero-stats {
           flex-wrap: wrap;
-          justify-content: center;
+        }
+        .hero-stat {
+          min-width: 140px;
+        }
+        .step {
+          border-right: none;
+          border-bottom: 1px solid rgba(250, 250, 249, 0.06);
+        }
+        .step:last-child {
+          border-bottom: none;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Navigation -->
+    <!-- FIXED WEB BG -->
+    <div class="web-bg" aria-hidden="true">
+      <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+        <!-- Spokes from top-right corner -->
+        <g stroke="#D4A84B" stroke-width="0.8" opacity="0.6">
+          <line x1="1400" y1="0" x2="700" y2="450" />
+          <line x1="1400" y1="0" x2="600" y2="450" />
+          <line x1="1400" y1="0" x2="800" y2="450" />
+          <line x1="1400" y1="0" x2="500" y2="450" />
+          <line x1="1400" y1="0" x2="900" y2="450" />
+          <line x1="1400" y1="0" x2="400" y2="450" />
+          <line x1="1400" y1="0" x2="1000" y2="450" />
+        </g>
+        <g fill="none" stroke="#D4A84B" stroke-width="0.6" class="web-thread">
+          <path d="M800 150 Q900 180 1050 120" />
+          <path d="M750 220 Q880 260 1100 200" />
+          <path d="M700 310 Q850 355 1150 295" />
+          <path d="M660 410 Q820 455 1200 400" />
+        </g>
+        <!-- Spokes from bottom-left -->
+        <g stroke="#D4A84B" stroke-width="0.6" opacity="0.4">
+          <line x1="0" y1="900" x2="700" y2="450" />
+          <line x1="0" y1="900" x2="600" y2="450" />
+          <line x1="0" y1="900" x2="800" y2="450" />
+          <line x1="0" y1="900" x2="500" y2="450" />
+          <line x1="0" y1="900" x2="400" y2="450" />
+        </g>
+        <g
+          fill="none"
+          stroke="#D4A84B"
+          stroke-width="0.5"
+          class="web-thread"
+          style="animation-delay: 2s"
+        >
+          <path d="M200 650 Q300 620 350 750" />
+          <path d="M150 550 Q280 510 340 660" />
+          <path d="M120 450 Q260 400 330 570" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- NAV -->
     <nav id="navbar">
-      <a href="#" class="logo">
-        <svg viewBox="0 0 200 200" style="width: 65px; height: 65px">
+      <a href="#" class="nav-logo">
+        <!-- Anansy logo: spokes + inward-curved web + spider + checkmark -->
+        <svg class="nav-logo-svg" viewBox="0 0 200 200">
           <defs>
-            <linearGradient
-              id="goldGradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stop-color="#E8C36B"></stop>
-              <stop offset="50%" stop-color="#D4A84B"></stop>
-              <stop offset="100%" stop-color="#B8943F"></stop>
+            <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E8C36B" />
+              <stop offset="50%" stop-color="#D4A84B" />
+              <stop offset="100%" stop-color="#B8943F" />
             </linearGradient>
-            <linearGradient
-              id="tealGradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stop-color="#14B8A6"></stop>
-              <stop offset="100%" stop-color="#0D9488"></stop>
+            <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#14B8A6" />
+              <stop offset="100%" stop-color="#0D9488" />
             </linearGradient>
           </defs>
           <g stroke="#1E3A5F" stroke-width="2.5" stroke-linecap="round">
-            <line x1="100" y1="100" x2="100" y2="18"></line>
-            <line x1="100" y1="100" x2="158" y2="42"></line>
-            <line x1="100" y1="100" x2="182" y2="100"></line>
-            <line x1="100" y1="100" x2="158" y2="158"></line>
-            <line x1="100" y1="100" x2="100" y2="182"></line>
-            <line x1="100" y1="100" x2="42" y2="158"></line>
-            <line x1="100" y1="100" x2="18" y2="100"></line>
-            <line x1="100" y1="100" x2="42" y2="42"></line>
+            <line x1="100" y1="100" x2="100" y2="18" />
+            <line x1="100" y1="100" x2="158" y2="42" />
+            <line x1="100" y1="100" x2="182" y2="100" />
+            <line x1="100" y1="100" x2="158" y2="158" />
+            <line x1="100" y1="100" x2="100" y2="182" />
+            <line x1="100" y1="100" x2="42" y2="158" />
+            <line x1="100" y1="100" x2="18" y2="100" />
+            <line x1="100" y1="100" x2="42" y2="42" />
           </g>
           <g
             fill="none"
-            stroke="url(#goldGradient)"
+            stroke="url(#ng)"
             stroke-width="5"
             stroke-linecap="round"
-            stroke-linejoin="round"
           >
-            <path d="M100 18 Q115 35 158 42"></path>
-            <path d="M158 42 Q165 75 182 100"></path>
-            <path d="M182 100 Q165 125 158 158"></path>
-            <path d="M158 158 Q125 165 100 182"></path>
-            <path d="M100 182 Q85 165 42 158"></path>
-            <path d="M42 158 Q35 125 18 100"></path>
-            <path d="M18 100 Q35 75 42 42"></path>
-            <path d="M42 42 Q75 35 100 18"></path>
-            <path d="M100 45 Q108 55 142 62"></path>
-            <path d="M142 62 Q150 80 162 100"></path>
-            <path d="M162 100 Q150 120 142 138"></path>
-            <path d="M142 138 Q120 148 100 158"></path>
-            <path d="M100 158 Q92 148 62 138"></path>
-            <path d="M62 138 Q52 118 42 100"></path>
-            <path d="M42 100 Q52 80 62 62"></path>
-            <path d="M62 62 Q82 55 100 45"></path>
-            <path d="M100 70 Q104 76 122 80"></path>
-            <path d="M122 80 Q128 90 134 100"></path>
-            <path d="M134 100 Q128 110 122 120"></path>
-            <path d="M122 120 Q110 126 100 132"></path>
-            <path d="M100 132 Q96 126 78 120"></path>
-            <path d="M78 120 Q72 110 66 100"></path>
-            <path d="M66 100 Q72 90 78 80"></path>
-            <path d="M78 80 Q92 76 100 70"></path>
+            <path d="M100 18 Q115 35 158 42" />
+            <path d="M158 42 Q165 75 182 100" />
+            <path d="M182 100 Q165 125 158 158" />
+            <path d="M158 158 Q125 165 100 182" />
+            <path d="M100 182 Q85 165 42 158" />
+            <path d="M42 158 Q35 125 18 100" />
+            <path d="M18 100 Q35 75 42 42" />
+            <path d="M42 42 Q75 35 100 18" />
+            <path d="M100 45 Q108 55 142 62" />
+            <path d="M142 62 Q150 80 162 100" />
+            <path d="M162 100 Q150 120 142 138" />
+            <path d="M142 138 Q120 148 100 158" />
+            <path d="M100 158 Q92 148 62 138" />
+            <path d="M62 138 Q52 118 42 100" />
+            <path d="M42 100 Q52 80 62 62" />
+            <path d="M62 62 Q82 55 100 45" />
+            <path d="M100 70 Q104 76 122 80" />
+            <path d="M122 80 Q128 90 134 100" />
+            <path d="M134 100 Q128 110 122 120" />
+            <path d="M122 120 Q110 126 100 132" />
+            <path d="M100 132 Q96 126 78 120" />
+            <path d="M78 120 Q72 110 66 100" />
+            <path d="M66 100 Q72 90 78 80" />
+            <path d="M78 80 Q92 76 100 70" />
           </g>
-          <g>
-            <ellipse cx="100" cy="104" rx="6" ry="8" fill="#1E3A5F"></ellipse>
-            <ellipse
-              cx="100"
-              cy="94"
-              rx="4.5"
-              ry="4.5"
-              fill="#1E3A5F"
-            ></ellipse>
-            <circle cx="97" cy="93" r="1.5" fill="#D4A84B"></circle>
-            <circle cx="103" cy="93" r="1.5" fill="#D4A84B"></circle>
+          <ellipse cx="100" cy="104" rx="6" ry="8" fill="#1E3A5F" />
+          <ellipse cx="100" cy="94" rx="4.5" ry="4.5" fill="#1E3A5F" />
+          <circle cx="97" cy="93" r="1.5" fill="#D4A84B" />
+          <circle cx="103" cy="93" r="1.5" fill="#D4A84B" />
+          <g
+            stroke="#1E3A5F"
+            stroke-width="1.8"
+            fill="none"
+            stroke-linecap="round"
+          >
+            <path d="M95 96 Q85 90 78 82" />
+            <path d="M94 102 Q82 100 72 100" />
+            <path d="M95 108 Q85 115 78 122" />
+            <path d="M105 96 Q115 90 122 82" />
+            <path d="M106 102 Q118 100 128 100" />
+            <path d="M105 108 Q115 115 122 122" />
+          </g>
+          <path
+            d="M76 106 Q80 100 86 108 Q90 114 96 110 Q108 100 120 85 Q126 78 129 81 Q126 86 118 96 Q106 112 94 122 Q88 126 82 120 Q76 114 73 108 Q74 106 76 106"
+            fill="url(#tg)"
+          />
+        </svg>
+        <div class="nav-wordmark">
+          <span class="nav-wordmark-name">Anansy</span>
+          <span class="nav-wordmark-tag">Untangle the truth</span>
+        </div>
+      </a>
+      <a href="mailto:ceo@anansy.app" class="nav-cta">Book a Demo &rarr;</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-gradient"></div>
+      <!-- Rotating web behind hero -->
+      <div class="hero-web" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E8C36B" />
+              <stop offset="100%" stop-color="#B8943F" />
+            </linearGradient>
+          </defs>
+          <g stroke="#1E3A5F" stroke-width="1" stroke-linecap="round">
+            <line x1="100" y1="100" x2="100" y2="5" />
+            <line x1="100" y1="100" x2="165" y2="35" />
+            <line x1="100" y1="100" x2="195" y2="100" />
+            <line x1="100" y1="100" x2="165" y2="165" />
+            <line x1="100" y1="100" x2="100" y2="195" />
+            <line x1="100" y1="100" x2="35" y2="165" />
+            <line x1="100" y1="100" x2="5" y2="100" />
+            <line x1="100" y1="100" x2="35" y2="35" />
+          </g>
+          <g
+            fill="none"
+            stroke="url(#hg)"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <path d="M100 5 Q118 25 165 35" />
+            <path d="M165 35 Q175 65 195 100" />
+            <path d="M195 100 Q175 135 165 165" />
+            <path d="M165 165 Q135 175 100 195" />
+            <path d="M100 195 Q82 175 35 165" />
+            <path d="M35 165 Q25 135 5 100" />
+            <path d="M5 100 Q25 65 35 35" />
+            <path d="M35 35 Q65 25 100 5" />
+            <path d="M100 35 Q110 45 148 55" />
+            <path d="M148 55 Q160 75 168 100" />
+            <path d="M168 100 Q160 125 148 145" />
+            <path d="M148 145 Q125 158 100 165" />
+            <path d="M100 165 Q90 158 55 145" />
+            <path d="M55 145 Q42 125 35 100" />
+            <path d="M35 100 Q42 75 55 55" />
+            <path d="M55 55 Q78 45 100 35" />
+            <path d="M100 62 Q106 70 128 76" />
+            <path d="M128 76 Q136 88 140 100" />
+            <path d="M140 100 Q136 112 128 124" />
+            <path d="M128 124 Q114 132 100 138" />
+            <path d="M100 138 Q94 132 72 124" />
+            <path d="M72 124 Q64 112 62 100" />
+            <path d="M62 100 Q64 88 72 76" />
+            <path d="M72 76 Q88 70 100 62" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          UK Trust Registry &middot; Financial Fraud Prevention
+        </div>
+        <div class="hero-logo-wrap">
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="hlg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8C36B" />
+                <stop offset="50%" stop-color="#D4A84B" />
+                <stop offset="100%" stop-color="#B8943F" />
+              </linearGradient>
+              <linearGradient id="htg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#14B8A6" />
+                <stop offset="100%" stop-color="#0D9488" />
+              </linearGradient>
+            </defs>
+            <g
+              stroke="#1E3A5F"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              opacity="0.8"
+            >
+              <line x1="100" y1="100" x2="100" y2="18" />
+              <line x1="100" y1="100" x2="158" y2="42" />
+              <line x1="100" y1="100" x2="182" y2="100" />
+              <line x1="100" y1="100" x2="158" y2="158" />
+              <line x1="100" y1="100" x2="100" y2="182" />
+              <line x1="100" y1="100" x2="42" y2="158" />
+              <line x1="100" y1="100" x2="18" y2="100" />
+              <line x1="100" y1="100" x2="42" y2="42" />
+            </g>
+            <g
+              fill="none"
+              stroke="url(#hlg)"
+              stroke-width="5"
+              stroke-linecap="round"
+            >
+              <path d="M100 18 Q115 35 158 42" />
+              <path d="M158 42 Q165 75 182 100" />
+              <path d="M182 100 Q165 125 158 158" />
+              <path d="M158 158 Q125 165 100 182" />
+              <path d="M100 182 Q85 165 42 158" />
+              <path d="M42 158 Q35 125 18 100" />
+              <path d="M18 100 Q35 75 42 42" />
+              <path d="M42 42 Q75 35 100 18" />
+              <path d="M100 45 Q108 55 142 62" />
+              <path d="M142 62 Q150 80 162 100" />
+              <path d="M162 100 Q150 120 142 138" />
+              <path d="M142 138 Q120 148 100 158" />
+              <path d="M100 158 Q92 148 62 138" />
+              <path d="M62 138 Q52 118 42 100" />
+              <path d="M42 100 Q52 80 62 62" />
+              <path d="M62 62 Q82 55 100 45" />
+              <path d="M100 70 Q104 76 122 80" />
+              <path d="M122 80 Q128 90 134 100" />
+              <path d="M134 100 Q128 110 122 120" />
+              <path d="M122 120 Q110 126 100 132" />
+              <path d="M100 132 Q96 126 78 120" />
+              <path d="M78 120 Q72 110 66 100" />
+              <path d="M66 100 Q72 90 78 80" />
+              <path d="M78 80 Q92 76 100 70" />
+            </g>
+            <ellipse cx="100" cy="104" rx="6" ry="8" fill="#1E3A5F" />
+            <ellipse cx="100" cy="94" rx="4.5" ry="4.5" fill="#1E3A5F" />
+            <circle cx="97" cy="93" r="1.5" fill="#D4A84B" />
+            <circle cx="103" cy="93" r="1.5" fill="#D4A84B" />
             <g
               stroke="#1E3A5F"
               stroke-width="1.8"
               fill="none"
               stroke-linecap="round"
             >
-              <path d="M95 96 Q85 90 78 82"></path>
-              <path d="M94 102 Q82 100 72 100"></path>
-              <path d="M95 108 Q85 115 78 122"></path>
-              <path d="M105 96 Q115 90 122 82"></path>
-              <path d="M106 102 Q118 100 128 100"></path>
-              <path d="M105 108 Q115 115 122 122"></path>
+              <path d="M95 96 Q85 90 78 82" />
+              <path d="M94 102 Q82 100 72 100" />
+              <path d="M95 108 Q85 115 78 122" />
+              <path d="M105 96 Q115 90 122 82" />
+              <path d="M106 102 Q118 100 128 100" />
+              <path d="M105 108 Q115 115 122 122" />
             </g>
-          </g>
-          <path
-            d=" M76 106 Q80 100 86 108 Q90 114 96 110 Q108 100 120 85 Q126 78 129 81 Q126 86 118 96 Q106 112 94 122 Q88 126 82 120 Q76 114 73 108 Q74 106 76 106 "
-            fill="url(#tealGradient)"
-          ></path>
-        </svg>
-        <span class="logo-text">ANANSY</span>
-      </a>
-      <a href="#contact" class="nav-cta">Contact US</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="web-pattern">
-        <svg viewBox="0 0 400 400" fill="none">
-          <circle
-            cx="200"
-            cy="200"
-            r="180"
-            stroke="#D4A84B"
-            stroke-width="0.5"
-            fill="none"
-          />
-          <circle
-            cx="200"
-            cy="200"
-            r="140"
-            stroke="#D4A84B"
-            stroke-width="0.5"
-            fill="none"
-          />
-          <circle
-            cx="200"
-            cy="200"
-            r="100"
-            stroke="#D4A84B"
-            stroke-width="0.5"
-            fill="none"
-          />
-          <circle
-            cx="200"
-            cy="200"
-            r="60"
-            stroke="#D4A84B"
-            stroke-width="0.5"
-            fill="none"
-          />
-          <line
-            x1="200"
-            y1="20"
-            x2="200"
-            y2="380"
-            stroke="#1E3A5F"
-            stroke-width="0.5"
-          />
-          <line
-            x1="20"
-            y1="200"
-            x2="380"
-            y2="200"
-            stroke="#1E3A5F"
-            stroke-width="0.5"
-          />
-          <line
-            x1="73"
-            y1="73"
-            x2="327"
-            y2="327"
-            stroke="#1E3A5F"
-            stroke-width="0.5"
-          />
-          <line
-            x1="327"
-            y1="73"
-            x2="73"
-            y2="327"
-            stroke="#1E3A5F"
-            stroke-width="0.5"
-          />
-        </svg>
-      </div>
-      <div class="hero-content">
-        <h1>Fight Misinformation<br /><span>Where It Spreads</span></h1>
-        <p class="tagline">Untangle the truth</p>
-        <p class="hero-description">
-          AI-powered fact-checking for WhatsApp. Verify suspicious messages in
-          seconds and protect your organisation with tamper-proof authentication
-          badges.
-        </p>
-        <div class="hero-ctas">
-          <a href="#solution" class="btn-secondary"> See How It Works </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">The Challenge</p>
-          <h2 class="section-title">Lies Travel Fast. Truth Needs Help.</h2>
-          <p class="section-subtitle">
-            Misinformation spreads through private messages faster than ever,
-            causing real-world harm.
-          </p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">35M</div>
-            <div class="stat-label">UK WhatsApp Users</div>
-            <div class="stat-detail">The primary vector for misinformation</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">62%</div>
-            <div class="stat-label">Can't Spot Fake News</div>
-            <div class="stat-detail">
-              People struggle to distinguish real from fake
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">2025</div>
-            <div class="stat-label">Meta Exits Fact-Checking</div>
-            <div class="stat-detail">
-              Creating a critical gap in verification
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="solution" id="solution">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">Our Solution</p>
-          <h2 class="section-title">Two Sides of the Same Truth</h2>
-          <p class="section-subtitle">
-            Empowering individuals to verify and organisations to authenticate.
-          </p>
-        </div>
-        <div class="solution-grid">
-          <div class="solution-card b2c">
-            <div class="solution-icon">📱</div>
-            <span class="card-badge">For Everyone</span>
-            <h3>Forward-to-Verify</h3>
-            <p>
-              Suspicious message? Forward it to Anansy. Get instant AI-powered
-              verification and share the truth back to your group.
-            </p>
-            <ul class="solution-features">
-              <li>Verification in under 30 seconds</li>
-              <li>Works inside WhatsApp — no app download</li>
-              <li>Clear verdict: True, False, or Unverified</li>
-              <li>Share truth the same way lies spread</li>
-            </ul>
-          </div>
-          <div class="solution-card b2b">
-            <div class="solution-icon">🏛️</div>
-            <span class="card-badge">For Organisations</span>
-            <h3>Trust Registry</h3>
-            <p>
-              Protect your reputation with tamper-proof authentication for all
-              official communications.
-            </p>
-            <ul class="solution-features">
-              <li>Embeddable verification badges</li>
-              <li>Tamper-proof message records</li>
-              <li>Real-time misinformation alerts</li>
-              <li>Combat deepfakes and impersonation</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">How It Works</p>
-          <h2 class="section-title">Truth in Three Steps</h2>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Forward the Message</h3>
-            <p>
-              See something suspicious in your WhatsApp group? Simply forward it
-              to the Anansy verification number.
-            </p>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>Get Instant Analysis</h3>
-            <p>
-              Our AI analyses the content against trusted sources and returns a
-              clear verification card within seconds.
-            </p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Share the Truth</h3>
-            <p>
-              Forward the verification card back to your group. Truth travels
-              the same path as the lie.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Trust Badge Section -->
-    <section class="trust">
-      <div class="container">
-        <div class="trust-content">
-          <div class="trust-text">
-            <h2>Build Trust with Every Message</h2>
-            <p>
-              The Trust Registry gives organisations an unforgeable stamp of
-              authenticity for all their communications.
-            </p>
-            <ul class="trust-list">
-              <li>Local councils protecting community updates</li>
-              <li>NHS trusts authenticating health guidance</li>
-              <li>Charities verifying donation appeals</li>
-              <li>Media outlets proving editorial authenticity</li>
-            </ul>
-          </div>
-          <div class="trust-visual">
-            <div class="trust-badge-demo">
-              <div class="badge-header">
-                <div class="badge-check">✓</div>
-                <span class="badge-title">VERIFIED BY ANANSY</span>
-              </div>
-              <p class="badge-org">[Your Organisation]</p>
-              <p class="badge-since">Trusted member since 2025</p>
-              <p class="badge-link">anansy.app/verify/abc123</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-      <div class="cta-content">
-        <h2>Be First to Untangle the Truth</h2>
-        <p>
-          Contact us for updates on launch, pilot opportunities, and partnership
-          enquiries.
-        </p>
-
-        <a href="mailto:solutions@anansy.app" class="btn-primary">
-          Send us an email
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            style="display: inline; margin-left: 0.5rem; vertical-align: -2px"
-          >
             <path
-              d="M3 13L13 3M13 3H6M13 3V10"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              d="M76 106 Q80 100 86 108 Q90 114 96 110 Q108 100 120 85 Q126 78 129 81 Q126 86 118 96 Q106 112 94 122 Q88 126 82 120 Q76 114 73 108 Q74 106 76 106"
+              fill="url(#htg)"
             />
           </svg>
-        </a>
+        </div>
+        <h1>Stop Financial Fraud <em>Before It Happens</em></h1>
+        <p class="hero-sub">
+          Anansy is the UK&rsquo;s Trust Registry for digital communications
+          &mdash; helping financial institutions prevent APP fraud before your
+          customer makes the payment.
+        </p>
+        <div class="hero-actions">
+          <a href="mailto:ceo@anansy.app" class="btn-primary"
+            >Book a 15-Minute Demo &rarr;</a
+          >
+          <a href="#what-is-app" class="btn-secondary">See How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">&pound;85k</span>
+            <div class="hero-stat-label">Max PSR reimbursement per case</div>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">57:1</span>
+            <div class="hero-stat-label">
+              Potential ROI on annual subscription
+            </div>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">86%</span>
+            <div class="hero-stat-label">
+              Of APP fraud losses now reimbursed
+            </div>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">Oct&nbsp;&rsquo;24</span>
+            <div class="hero-stat-label">PSR mandatory reimbursement live</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-logo">
-          <span class="footer-logo-text">ANANSY</span>
-          <span class="footer-tagline">· Untangle the truth</span>
+    <!-- APP EXPLAINER -->
+    <section class="explainer" id="what-is-app">
+      <div class="section-inner">
+        <div class="sr">
+          <div class="section-eyebrow">What is APP Fraud?</div>
         </div>
-        <div class="footer-links">
-          <a href="mailto:solutions@anansy.app">Contact</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+        <div class="sr sr-delay-1">
+          <h2 class="section-title">
+            You sent the money yourself. <em>Because you were tricked.</em>
+          </h2>
         </div>
-        <p class="footer-copy">© 2026 Anansy. All rights reserved.</p>
+        <div class="explainer-grid">
+          <div class="sr sr-delay-2">
+            <p class="explainer-lede">
+              APP stands for <em>Authorised Push Payment.</em><br />It means
+              <strong>a bank transfer you made yourself</strong> &mdash; to a
+              scammer.
+            </p>
+            <p class="explainer-p">
+              This is what makes it different from other fraud. Your bank
+              wasn&rsquo;t hacked. Your account wasn&rsquo;t broken into.
+              <b>You were fooled into pressing the button.</b>
+            </p>
+            <p class="explainer-p">
+              A scammer sends a message pretending to be your bank, HMRC, Royal
+              Mail, or even a family member. It creates urgency:
+            </p>
+            <div class="explainer-quote">
+              &ldquo;Your account has been compromised &mdash; act now.&rdquo;
+              &nbsp;&middot;&nbsp; &ldquo;Parcel fee due: &pound;3.49.&rdquo;
+              &nbsp;&middot;&nbsp; &ldquo;Mum, I need help urgently.&rdquo;
+            </div>
+            <p class="explainer-p">
+              You panic. You trust it. You transfer the money. It lands in a
+              scammer&rsquo;s account. <b>And it&rsquo;s gone.</b>
+            </p>
+            <p class="explainer-p" style="margin-bottom: 0">
+              Until recently, banks could say &ldquo;not our problem&rdquo;
+              because <em>you</em> authorised it. Since <b>October 2024</b>,
+              they must now reimburse victims up to &pound;85,000 &mdash; which
+              means they&rsquo;re very motivated to stop it happening in the
+              first place.
+            </p>
+            <div class="scale-box">
+              <div class="scale-item">
+                <div class="scale-num">&pound;450.7m</div>
+                <div class="scale-label">Lost to APP fraud in 2024</div>
+              </div>
+              <div class="scale-item">
+                <div class="scale-num">224,000</div>
+                <div class="scale-label">Cases reported in 2024</div>
+              </div>
+              <div class="scale-item">
+                <div class="scale-num">&pound;2,437</div>
+                <div class="scale-label">Average loss per victim</div>
+              </div>
+            </div>
+          </div>
+          <div class="sr sr-delay-3">
+            <div class="story">
+              <div class="story-step">
+                <div class="story-icon danger">&#128241;</div>
+                <div>
+                  <div class="story-title">
+                    A message arrives. It looks real.
+                  </div>
+                  <div class="story-body">
+                    A text from &ldquo;your bank.&rdquo; A WhatsApp from
+                    &ldquo;HMRC.&rdquo; An email from &ldquo;Royal Mail.&rdquo;
+                    It uses your name and looks exactly like the genuine thing.
+                    <b>It isn&rsquo;t.</b>
+                  </div>
+                </div>
+              </div>
+              <div class="story-step">
+                <div class="story-icon warning">&#9888;&#65039;</div>
+                <div>
+                  <div class="story-title">Urgency. Panic. Trust.</div>
+                  <div class="story-body">
+                    The message is engineered to
+                    <b>short-circuit your thinking.</b> You don&rsquo;t question
+                    it. You react.
+                  </div>
+                </div>
+              </div>
+              <div class="story-step">
+                <div class="story-icon danger">&#128184;</div>
+                <div>
+                  <div class="story-title">
+                    You press send. The money moves.
+                  </div>
+                  <div class="story-body">
+                    Because <em>you</em> authorised the transfer, it happens
+                    instantly. The money lands in the scammer&rsquo;s account
+                    and is moved on within minutes. <b>Recovery is rare.</b>
+                  </div>
+                </div>
+              </div>
+              <div class="story-step">
+                <div class="story-icon warning">&#127982;</div>
+                <div>
+                  <div class="story-title">The bank picks up the bill.</div>
+                  <div class="story-body">
+                    Since October 2024, UK banks must reimburse victims up to
+                    <b>&pound;85,000 per case</b> within 5 working days. Every
+                    undetected scam is a direct liability.
+                  </div>
+                </div>
+              </div>
+              <div class="story-step">
+                <div class="story-icon safe">&#128737;&#65039;</div>
+                <div>
+                  <div class="story-title">
+                    Anansy stops it here &mdash; at the message.
+                  </div>
+                  <div class="story-body">
+                    Before your customer panics. Before they press send. Anansy
+                    lets anyone verify a suspicious message in seconds and gives
+                    a clear answer: <b>real or fake.</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="problem">
+      <div class="section-inner">
+        <div class="sr"><div class="section-eyebrow">The Problem</div></div>
+        <div class="sr sr-delay-1">
+          <h2 class="section-title">
+            Your customers are being scammed.
+            <em>You&rsquo;re paying for it.</em>
+          </h2>
+          <p class="section-body">
+            Scammers impersonate your brand across SMS, WhatsApp, and email.
+            Under PSR rules effective October 2024, you now pick up the bill
+            &mdash; up to &pound;85,000 per case, within 5 working days.
+          </p>
+        </div>
+        <div class="problem-grid">
+          <div class="p-cards sr sr-delay-2">
+            <div class="p-card">
+              <div class="p-card-title">
+                PSR Mandatory Reimbursement (Oct 2024)
+              </div>
+              <div class="p-card-body">
+                Banks must reimburse APP fraud victims up to &pound;85,000 per
+                case. 86% of in-scope losses are now reimbursed. Every prevented
+                fraud case is a direct cost saving.
+              </div>
+            </div>
+            <div class="p-card">
+              <div class="p-card-title">FCA Consumer Duty (July 2023)</div>
+              <div class="p-card-body">
+                Firms must demonstrate they deliver good outcomes for customers.
+                Proactive fraud prevention is an evidence-based measure. Anansy
+                generates audit-ready compliance evidence automatically.
+              </div>
+            </div>
+            <div class="p-card">
+              <div class="p-card-title">PSR Performance Data Published</div>
+              <div class="p-card-body">
+                For the first time, PSR names banks by fraud rates. Your fraud
+                performance is now visible to customers and the market.
+              </div>
+            </div>
+            <div class="p-card gold">
+              <div class="p-card-title">
+                The gap existing tools can&rsquo;t fill
+              </div>
+              <div class="p-card-body">
+                BioCatch protects payment systems. Proofpoint protects email.
+                Confirmation of Payee fires too late. None intercept the message
+                <em>before</em> the customer acts.
+              </div>
+            </div>
+          </div>
+          <div class="p-highlight sr sr-delay-3">
+            <div class="p-highlight-num">&pound;2,437</div>
+            <div class="p-highlight-text">
+              Average APP fraud loss per case in 2024. Preventing just one case
+              per quarter delivers a positive return on your Anansy
+              subscription.
+            </div>
+            <div class="gold-rule"></div>
+            <div class="p-highlight-accent">
+              Preventing 1 case per quarter saves up to
+              <span
+                style="
+                  font-family: &quot;Playfair Display&quot;, serif;
+                  font-size: 1.3rem;
+                "
+                >&pound;340,000/year</span
+              >
+              in reimbursements.
+            </div>
+            <div class="p-highlight-source">
+              Source: UK Finance Annual Fraud Report 2025; PSR APP Fraud
+              Performance Data 2024
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how-it-works">
+      <div class="section-inner">
+        <div class="sr"><div class="section-eyebrow">How It Works</div></div>
+        <div class="sr sr-delay-1">
+          <h2 class="section-title">
+            Fraud prevention in <em>three steps</em>
+          </h2>
+          <p class="section-body">
+            Anansy operates upstream &mdash; intercepting the fraudulent message
+            before your customer acts. No new app required. No disruption to
+            existing systems.
+          </p>
+        </div>
+        <div class="steps sr sr-delay-2">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-icon">&#127963;&#65039;</div>
+            <div class="step-title">Register</div>
+            <div class="step-body">
+              Your organisation registers all official SMS, WhatsApp, and email
+              communications in Anansy&rsquo;s Trust Registry. Every
+              authenticated message gets a tamper-proof record.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-icon">&#128269;</div>
+            <div class="step-title">Verify</div>
+            <div class="step-body">
+              Your customer receives a suspicious message. They forward it to
+              Anansy via WhatsApp. Within seconds they receive a clear verdict:
+              genuine or fraudulent.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-icon">&#128737;&#65039;</div>
+            <div class="step-title">Protect</div>
+            <div class="step-body">
+              The customer is warned before they act. Your fraud team gets a
+              live impersonation intelligence dashboard. Compliance evidence is
+              generated automatically.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="roi">
+      <div class="section-inner">
+        <div class="roi-inner">
+          <div class="sr">
+            <div class="section-eyebrow">The Business Case</div>
+            <h2 class="section-title">
+              The numbers <em>speak for themselves</em>
+            </h2>
+            <p class="section-body" style="margin-bottom: 0">
+              A bank on our Enterprise tier (&pound;1,999/month) needs to
+              prevent just one APP fraud case per quarter to achieve a positive
+              return. With average losses of &pound;2,437 and reimbursement
+              obligations up to &pound;85,000, the maths is straightforward.
+            </p>
+            <ul class="roi-list">
+              <li>Annual subscription from &pound;5,988</li>
+              <li>Prevents fraud upstream &mdash; before payment is made</li>
+              <li>
+                Generates FCA Consumer Duty compliance evidence automatically
+              </li>
+              <li>Reduces fraud investigation operational costs</li>
+              <li>Improves PSR performance data rankings</li>
+              <li>Strengthens customer trust and brand integrity</li>
+            </ul>
+          </div>
+          <div class="roi-card sr sr-delay-2">
+            <div class="roi-headline">Potential annual ROI</div>
+            <div class="roi-big"><sup>up to</sup>57<sup>:1</sup></div>
+            <div class="roi-rule"></div>
+            <div class="roi-sub">
+              &pound;340,000 in reimbursements avoided (4 cases &times;
+              &pound;85k PSR max) vs. &pound;5,988 annual subscription on
+              Starter tier.
+            </div>
+            <div class="roi-price-label">ANNUAL SUBSCRIPTION FROM</div>
+            <div class="roi-price">&pound;5,988 <span>/year</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY DIFFERENT -->
+    <section class="why">
+      <div class="section-inner">
+        <div class="sr"><div class="section-eyebrow">Why Anansy</div></div>
+        <div class="sr sr-delay-1">
+          <h2 class="section-title">
+            Built for the gap <em>existing tools miss</em>
+          </h2>
+          <p class="section-body">
+            Most fraud prevention operates after the customer has been
+            convinced. Anansy operates where the fraud actually happens &mdash;
+            in the message.
+          </p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card sr sr-delay-1">
+            <div class="why-icon">&#9889;</div>
+            <div class="why-card-title">Upstream intervention</div>
+            <div class="why-card-body">
+              Anansy intercepts fraud before the customer acts &mdash; not after
+              payment is initiated. Confirmation of Payee fires too late. Anansy
+              fires at the message.
+            </div>
+          </div>
+          <div class="why-card sr sr-delay-2">
+            <div class="why-icon">&#128241;</div>
+            <div class="why-card-title">Covers WhatsApp &amp; SMS</div>
+            <div class="why-card-body">
+              Proofpoint and Mimecast protect email infrastructure. They have no
+              presence in WhatsApp or SMS &mdash; the primary channels for APP
+              fraud impersonation.
+            </div>
+          </div>
+          <div class="why-card sr sr-delay-3">
+            <div class="why-icon">&#128203;</div>
+            <div class="why-card-title">FCA Consumer Duty compliance</div>
+            <div class="why-card-body">
+              Anansy&rsquo;s compliance module generates audit-ready evidence of
+              customer protection activity &mdash; directly satisfying Consumer
+              Duty obligations.
+            </div>
+          </div>
+          <div class="why-card sr sr-delay-4">
+            <div class="why-icon">&#127468;&#127463;</div>
+            <div class="why-card-title">UK-first, independent</div>
+            <div class="why-card-body">
+              UK data residency, GDPR compliant, independent of Big Tech
+              platforms. No dependency on Meta, Google, or any platform that may
+              change policy.
+            </div>
+          </div>
+        </div>
+        <div class="comparison-wrap sr sr-delay-2">
+          <table class="comparison">
+            <thead>
+              <tr>
+                <th>Existing Solution</th>
+                <th>What It Protects</th>
+                <th>The Gap</th>
+                <th>Anansy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BioCatch, Featurespace</td>
+                <td>Bank&rsquo;s payment systems</td>
+                <td>Cannot verify messages before the customer acts</td>
+                <td>
+                  <span class="check">&#10003;</span> Verifies before action
+                </td>
+              </tr>
+              <tr>
+                <td>Proofpoint, Mimecast</td>
+                <td>Bank&rsquo;s email infrastructure</td>
+                <td>No presence in WhatsApp or SMS channels</td>
+                <td>
+                  <span class="check">&#10003;</span> WhatsApp + SMS + email
+                </td>
+              </tr>
+              <tr>
+                <td>Confirmation of Payee</td>
+                <td>Payment destination</td>
+                <td>Customer already convinced by the time they pay</td>
+                <td><span class="check">&#10003;</span> Upstream of payment</td>
+              </tr>
+              <tr>
+                <td>Stop! Think Fraud</td>
+                <td>Public awareness</td>
+                <td>Education alone &mdash; no real-time verification</td>
+                <td>
+                  <span class="check">&#10003;</span> Real-time verification
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGULATORY -->
+    <section class="regulatory">
+      <div class="section-inner">
+        <div class="sr">
+          <div class="section-eyebrow">Regulatory Context</div>
+        </div>
+        <div class="sr sr-delay-1">
+          <h2 class="section-title">The window is <em>now open</em></h2>
+          <p class="section-body">
+            A convergence of UK regulatory action has created conditions that
+            didn&rsquo;t exist 18 months ago. Every month without proactive
+            fraud prevention is a month of avoidable liability.
+          </p>
+        </div>
+        <div class="reg-grid">
+          <div class="reg-card sr sr-delay-1">
+            <div class="reg-date">OCT 2024</div>
+            <div class="reg-title">PSR Mandatory Reimbursement</div>
+            <div class="reg-body">
+              Banks must reimburse APP fraud victims up to &pound;85,000 within
+              5 business days. Creates immediate, quantifiable ROI for every
+              prevention tool deployed.
+            </div>
+          </div>
+          <div class="reg-card sr sr-delay-2">
+            <div class="reg-date">JUL 2023 &rarr; ONGOING</div>
+            <div class="reg-title">FCA Consumer Duty</div>
+            <div class="reg-body">
+              Requires financial firms to demonstrate good customer outcomes.
+              Proactive fraud prevention is a direct, evidenceable Consumer Duty
+              measure.
+            </div>
+          </div>
+          <div class="reg-card sr sr-delay-3">
+            <div class="reg-date">2024&ndash;2025</div>
+            <div class="reg-title">PSR Performance Data Published</div>
+            <div class="reg-body">
+              For the first time, PSR publishes bank-level fraud rates by name.
+              Competitive pressure is now public and visible to the whole
+              market.
+            </div>
+          </div>
+          <div class="reg-card sr sr-delay-1">
+            <div class="reg-date">2025</div>
+            <div class="reg-title">UK Fraud Strategy</div>
+            <div class="reg-body">
+              Cross-government strategy signalling sustained commitment to fraud
+              prevention. Validates the market for private-sector solutions.
+            </div>
+          </div>
+          <div class="reg-card sr sr-delay-2">
+            <div class="reg-date">MAR 2025</div>
+            <div class="reg-title">Online Safety Act Enforcement</div>
+            <div class="reg-body">
+              Ofcom&rsquo;s first Codes of Practice enforced from March 2025.
+              Increases demand for independent verification infrastructure.
+            </div>
+          </div>
+          <div class="reg-card sr sr-delay-3">
+            <div class="reg-date">ONGOING</div>
+            <div class="reg-title">Ofcom SMS Sender ID Consultation</div>
+            <div class="reg-body">
+              Active consultation on mandatory sender ID registration. Either
+              outcome creates the infrastructure gap that Anansy fills.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILOT CTA -->
+    <section class="pilot">
+      <div class="pilot-inner sr">
+        <div class="pilot-logo">
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="plg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8C36B" />
+                <stop offset="100%" stop-color="#B8943F" />
+              </linearGradient>
+              <linearGradient id="ptg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#14B8A6" />
+                <stop offset="100%" stop-color="#0D9488" />
+              </linearGradient>
+            </defs>
+            <g
+              stroke="#1E3A5F"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.6"
+            >
+              <line x1="100" y1="100" x2="100" y2="18" />
+              <line x1="100" y1="100" x2="158" y2="42" />
+              <line x1="100" y1="100" x2="182" y2="100" />
+              <line x1="100" y1="100" x2="158" y2="158" />
+              <line x1="100" y1="100" x2="100" y2="182" />
+              <line x1="100" y1="100" x2="42" y2="158" />
+              <line x1="100" y1="100" x2="18" y2="100" />
+              <line x1="100" y1="100" x2="42" y2="42" />
+            </g>
+            <g
+              fill="none"
+              stroke="url(#plg)"
+              stroke-width="4.5"
+              stroke-linecap="round"
+            >
+              <path d="M100 18 Q115 35 158 42" />
+              <path d="M158 42 Q165 75 182 100" />
+              <path d="M182 100 Q165 125 158 158" />
+              <path d="M158 158 Q125 165 100 182" />
+              <path d="M100 182 Q85 165 42 158" />
+              <path d="M42 158 Q35 125 18 100" />
+              <path d="M18 100 Q35 75 42 42" />
+              <path d="M42 42 Q75 35 100 18" />
+              <path d="M100 45 Q108 55 142 62" />
+              <path d="M142 62 Q150 80 162 100" />
+              <path d="M162 100 Q150 120 142 138" />
+              <path d="M142 138 Q120 148 100 158" />
+              <path d="M100 158 Q92 148 62 138" />
+              <path d="M62 138 Q52 118 42 100" />
+              <path d="M42 100 Q52 80 62 62" />
+              <path d="M62 62 Q82 55 100 45" />
+            </g>
+            <ellipse cx="100" cy="104" rx="6" ry="8" fill="#1E3A5F" />
+            <ellipse cx="100" cy="94" rx="4.5" ry="4.5" fill="#1E3A5F" />
+            <circle cx="97" cy="93" r="1.5" fill="#D4A84B" />
+            <circle cx="103" cy="93" r="1.5" fill="#D4A84B" />
+            <g
+              stroke="#1E3A5F"
+              stroke-width="1.8"
+              fill="none"
+              stroke-linecap="round"
+            >
+              <path d="M95 96 Q85 90 78 82" />
+              <path d="M94 102 Q82 100 72 100" />
+              <path d="M95 108 Q85 115 78 122" />
+              <path d="M105 96 Q115 90 122 82" />
+              <path d="M106 102 Q118 100 128 100" />
+              <path d="M105 108 Q115 115 122 122" />
+            </g>
+            <path
+              d="M76 106 Q80 100 86 108 Q90 114 96 110 Q108 100 120 85 Q126 78 129 81 Q126 86 118 96 Q106 112 94 122 Q88 126 82 120 Q76 114 73 108 Q74 106 76 106"
+              fill="url(#ptg)"
+            />
+          </svg>
+        </div>
+        <div class="section-eyebrow pilot-eyebrow">Early Pilot Programme</div>
+        <h2 class="pilot-title">Be first to <em>protect your customers</em></h2>
+        <p class="pilot-body">
+          We&rsquo;re inviting a select group of UK financial institutions to
+          join our early pilot programme. Get ahead of your PSR performance
+          data, generate Consumer Duty compliance evidence, and prevent fraud
+          upstream &mdash; before it costs you.
+        </p>
+        <div class="pilot-actions">
+          <a href="mailto:ceo@anansy.app" class="btn-primary"
+            >Book a 15-Minute Call &rarr;</a
+          >
+          <a href="mailto:ceo@anansy.app" class="btn-secondary"
+            >ceo@anansy.app</a
+          >
+        </div>
+        <div class="pilot-note">
+          Scotland-based &middot; UK data residency &middot; GDPR compliant
+          &middot; Independent of Big Tech
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">
+        <svg viewBox="0 0 200 200" style="width: 32px; height: 32px">
+          <defs>
+            <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E8C36B" />
+              <stop offset="100%" stop-color="#B8943F" />
+            </linearGradient>
+          </defs>
+          <g
+            stroke="#1E3A5F"
+            stroke-width="2"
+            stroke-linecap="round"
+            opacity="0.5"
+          >
+            <line x1="100" y1="100" x2="100" y2="18" />
+            <line x1="100" y1="100" x2="158" y2="42" />
+            <line x1="100" y1="100" x2="182" y2="100" />
+            <line x1="100" y1="100" x2="158" y2="158" />
+            <line x1="100" y1="100" x2="100" y2="182" />
+            <line x1="100" y1="100" x2="42" y2="158" />
+            <line x1="100" y1="100" x2="18" y2="100" />
+            <line x1="100" y1="100" x2="42" y2="42" />
+          </g>
+          <g
+            fill="none"
+            stroke="url(#fg)"
+            stroke-width="4"
+            stroke-linecap="round"
+          >
+            <path d="M100 18 Q115 35 158 42" />
+            <path d="M158 42 Q165 75 182 100" />
+            <path d="M182 100 Q165 125 158 158" />
+            <path d="M158 158 Q125 165 100 182" />
+            <path d="M100 182 Q85 165 42 158" />
+            <path d="M42 158 Q35 125 18 100" />
+            <path d="M18 100 Q35 75 42 42" />
+            <path d="M42 42 Q75 35 100 18" />
+          </g>
+          <ellipse cx="100" cy="103" rx="5" ry="7" fill="#1E3A5F" />
+          <ellipse cx="100" cy="94" rx="4" ry="4" fill="#1E3A5F" />
+          <circle cx="97.5" cy="93" r="1.5" fill="#D4A84B" />
+          <circle cx="102.5" cy="93" r="1.5" fill="#D4A84B" />
+        </svg>
+        <div>
+          <div class="footer-brand-text">Anansy</div>
+          <div class="footer-brand-tag">Untangle the truth</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:ceo@anansy.app">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Anansy. All rights reserved.</div>
     </footer>
 
     <script>
-      // Navbar scroll effect
+      // Navbar scroll
       const navbar = document.getElementById("navbar");
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
+        navbar.classList.toggle("scrolled", window.scrollY > 60);
       });
 
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
+      // Scroll reveal — works as progressive enhancement
+      // All .sr elements are invisible by default via CSS;
+      // JS adds .in class to make them visible when in viewport.
+      // If IntersectionObserver not available, make everything visible immediately.
+      const srEls = document.querySelectorAll(".sr");
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -30px 0px" },
+        );
+        srEls.forEach((el) => io.observe(el));
+      } else {
+        srEls.forEach((el) => el.classList.add("in"));
+      }
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href === "#") return;
           e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
+          const t = document.querySelector(href);
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
     </script>
